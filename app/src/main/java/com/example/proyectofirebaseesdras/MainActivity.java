@@ -78,13 +78,13 @@ public class MainActivity extends AppCompatActivity
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
-                                Toast.makeText(MainActivity.this, "Inicio de sesion correcto, bienvenido", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Inicio de sesión correcto, bienvenido", Toast.LENGTH_SHORT).show();
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Intent intent = new Intent(MainActivity.this, Inicio.class);
                                 startActivity(intent);
                             } else {
                                 // Si falla el inicio de sesion, avisar al usuario
-                                Toast.makeText(MainActivity.this, "Error al iniciar sesion", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
