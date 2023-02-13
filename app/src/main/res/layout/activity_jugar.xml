@@ -8,11 +8,25 @@
     android:background="#FFFFFF"
     tools:context=".activity_jugar">
 
+    <Button
+        android:id="@+id/btn_enviarPuntuacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="#2B2B2B"
+        android:onClick="enviarPuntuacion"
+        android:padding="10dp"
+        android:text="¡Envia tu puntuación!"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_gamerTag" />
+
     <TextView
         android:id="@+id/txt_puntuacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:gravity="center"
         android:padding="3dp"
         android:text="0"
@@ -20,8 +34,9 @@
         android:textSize="60sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_tiempo" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_tituloPuntuacion" />
 
     <TextView
         android:id="@+id/txt_TituloJugar"
@@ -29,7 +44,7 @@
         android:layout_height="wrap_content"
         android:background="#2B2B2B"
         android:gravity="center"
-        android:padding="5dp"
+        android:padding="10dp"
         android:text="¡Apriete el botón lo más rapido posible!"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
@@ -38,17 +53,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txt_tiempo"
+        android:id="@+id/txt_tituloPuntuacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="40dp"
         android:gravity="center"
         android:padding="3dp"
-        android:text="0:00"
+        android:text="Puntuación:"
         android:textColor="#000000"
-        android:textSize="96sp"
+        android:textSize="60sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_TituloJugar" />
 
@@ -64,4 +80,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/edt_gamerTag"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Ponga aqui su GamerTag..."
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:textColorHint="#777777"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_puntuacion" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

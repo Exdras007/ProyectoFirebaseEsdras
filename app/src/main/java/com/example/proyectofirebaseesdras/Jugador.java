@@ -6,20 +6,27 @@ public class Jugador
 {
     private String Correo;
     private String GamerTag;
-    private int Puntuacion;
+    private int PuntuacionJugador;
 
-    public Jugador(String nombre, String gamerTag, int puntuacion)
+    public Jugador(String correo, String gamerTag, int puntuacion)
     {
-        Correo = nombre;
+        Correo = correo;
         GamerTag = gamerTag;
-        Puntuacion = puntuacion;
+        PuntuacionJugador = puntuacion;
+    }
+
+    public Jugador(String gamerTag, int puntuacion)
+    {
+        Correo = "";
+        GamerTag = gamerTag;
+        PuntuacionJugador = puntuacion;
     }
 
     public Jugador()
     {
         Correo = "";
-        Puntuacion = 0;
         GamerTag = "";
+        PuntuacionJugador = 0;
     }
 
     public String getCorreo() {
@@ -30,12 +37,12 @@ public class Jugador
         Correo = correo;
     }
 
-    public int getPuntuacion() {
-        return Puntuacion;
+    public int getPuntuacionJugador() {
+        return PuntuacionJugador;
     }
 
-    public void setPuntuacion(int puntuacion) {
-        Puntuacion = puntuacion;
+    public void setPuntuacionJugador(int puntuacionJugador) {
+        PuntuacionJugador = puntuacionJugador;
     }
 
     public String getGamerTag() {
@@ -52,7 +59,7 @@ public class Jugador
         return "Jugador{" +
                 "Nombre='" + Correo + '\'' +
                 ", GamerTag='" + GamerTag + '\'' +
-                ", Puntuacion=" + Puntuacion +
+                ", Puntuacion=" + PuntuacionJugador +
                 '}';
     }
 
