@@ -17,7 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class activity_jugar extends AppCompatActivity
 {
-    FirebaseDatabase database;
     private FirebaseAuth mAuth;
     private int puntuacion = 0;
     private TextView TXT_puntuacion;
@@ -40,7 +39,6 @@ public class activity_jugar extends AppCompatActivity
         BotonEnviarPuntuacion = (Button) findViewById(R.id.btn_enviarPuntuacion);
         EDT_GamerTag = (EditText) findViewById(R.id.edt_gamerTag);
     }
-
     public void enviarPuntuacion(View view)
     {
         String GamerTag = String.valueOf(EDT_GamerTag.getText());
@@ -51,18 +49,23 @@ public class activity_jugar extends AppCompatActivity
         }
         else
         {
+            // Con esto saco el email que está actualmente en uso
             mAuth = FirebaseAuth.getInstance();
             String Email = mAuth.getCurrentUser().getEmail();
+
+            // Aqui hago el jugador nuevo y lo añado a la base de datos
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference();
             Jugador jugadorActual = new Jugador(Email, GamerTag, puntuacion);
+            // Aqui lo añado
             myRef.child("Jugadores").child(jugadorActual.getGamerTag()).setValue(jugadorActual);
+
+            // Muestro un mensaje de confirmacion y vuelvo a la pantalla anterior
             Toast.makeText(activity_jugar.this, "Puntuacion subida correctamente", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(activity_jugar.this, Inicio.class);
             startActivity(intent);
         }
     }
-
     public void sumarPuntuacion(View view)
     {
         if (empezado == false)
@@ -70,7 +73,6 @@ public class activity_jugar extends AppCompatActivity
             empezado = true;
             hcr.getHilo().start();
         }
-
         if (hcr.getTiempo() == 5)
         {
             BotoncitoTravieso.setTranslationX(0);
@@ -94,7 +96,6 @@ public class activity_jugar extends AppCompatActivity
             }
         }
     }
-
     private void CambiarOrientacion()
     {
         // Esto va a mover el boton de forma aleatoria cuando llegues a los numeros que te salgan
@@ -123,5 +124,4 @@ public class activity_jugar extends AppCompatActivity
             BotoncitoTravieso.setTranslationY(-numeroY);
         }
     }
-
 }
