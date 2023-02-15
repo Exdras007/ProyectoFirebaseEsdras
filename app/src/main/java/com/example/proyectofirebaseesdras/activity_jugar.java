@@ -51,9 +51,11 @@ public class activity_jugar extends AppCompatActivity
         }
         else
         {
-            Jugador jugadorActual = new Jugador(GamerTag, puntuacion);
+            mAuth = FirebaseAuth.getInstance();
+            String Email = mAuth.getCurrentUser().getEmail();
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference();
+            Jugador jugadorActual = new Jugador(Email, GamerTag, puntuacion);
             myRef.child("Jugadores").child(jugadorActual.getGamerTag()).setValue(jugadorActual);
             Toast.makeText(activity_jugar.this, "Puntuacion subida correctamente", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(activity_jugar.this, Inicio.class);
