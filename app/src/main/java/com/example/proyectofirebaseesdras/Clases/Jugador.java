@@ -17,9 +17,9 @@ public class Jugador
 
     public Jugador(String gamerTag, int puntuacion)
     {
-        Correo = "";
         GamerTag = gamerTag;
         PuntuacionJugador = puntuacion;
+        Correo = "";
     }
 
     public Jugador()

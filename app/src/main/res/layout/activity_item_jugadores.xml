@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
     tools:context=".activity_item_jugadores">
 
     <LinearLayout
@@ -34,19 +35,10 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txt_tituloNombre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:text="Gamer Tag:"
-                android:textColor="#000000"
-                android:textSize="20sp" />
-
-            <TextView
                 android:id="@+id/txt_NombreJugador"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
                 android:paddingBottom="20dp"
                 android:rotation="0"
@@ -54,17 +46,7 @@
                 android:rotationY="25"
                 android:text="Nombre"
                 android:textColor="#000000"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/txt_puntuacionJugadorItem"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:padding="5dp"
-                android:text="Puntuación:"
-                android:textColor="#000000"
-                android:textSize="20sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/txt_puntuacionJugador"
