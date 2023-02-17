@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class activity_jugar extends AppCompatActivity
 {
+    private boolean Mostrado = false;
     private FirebaseAuth mAuth;
     private int puntuacion = 0;
     private TextView TXT_puntuacion;
@@ -77,7 +78,13 @@ public class activity_jugar extends AppCompatActivity
         {
             BotoncitoTravieso.setTranslationX(0);
             BotoncitoTravieso.setTranslationY(0);
-            Toast.makeText(activity_jugar.this, "¡Se acabó el tiempo!", Toast.LENGTH_SHORT).show();
+            BotoncitoTravieso.setRotationX(0);
+            BotoncitoTravieso.setRotationY(0);
+            if (Mostrado == false)
+            {
+                Toast.makeText(activity_jugar.this, "¡Se acabó el tiempo!", Toast.LENGTH_SHORT).show();
+                Mostrado = true;
+            }
             String tiempo = String.valueOf(hcr.getTiempo());
             // Toast.makeText(activity_jugar.this, "Tiempo: " + tiempo + "s", Toast.LENGTH_SHORT).show();
             BotonEnviarPuntuacion.setVisibility(View.VISIBLE);
@@ -103,25 +110,35 @@ public class activity_jugar extends AppCompatActivity
         int orientacion = (int)(Math.random()*(40-2+1)+2);
         int numeroX = (int)(Math.random()*(400-10+1)+10);
         int numeroY = (int)(Math.random()*(230-10+1)+10);
+        int numeroXX = (int)(Math.random()*(20-10+1)+10);
+        int numeroYY = (int)(Math.random()*(20-10+1)+10);
         if (orientacion < 10)
         {
             BotoncitoTravieso.setTranslationX(numeroX);
             BotoncitoTravieso.setTranslationY(numeroY);
+            BotoncitoTravieso.setRotationX(numeroXX);
+            BotoncitoTravieso.setRotationY(numeroYY);
         }
         else if (orientacion < 20)
         {
             BotoncitoTravieso.setTranslationX(-numeroX);
             BotoncitoTravieso.setTranslationY(-numeroY);
+            BotoncitoTravieso.setRotationX(-numeroXX);
+            BotoncitoTravieso.setRotationY(-numeroYY);
         }
         else if (orientacion < 30)
         {
             BotoncitoTravieso.setTranslationX(-numeroX);
             BotoncitoTravieso.setTranslationY(numeroY);
+            BotoncitoTravieso.setRotationX(-numeroXX);
+            BotoncitoTravieso.setRotationY(numeroYY);
         }
         else if (orientacion < 40)
         {
             BotoncitoTravieso.setTranslationX(numeroX);
             BotoncitoTravieso.setTranslationY(-numeroY);
+            BotoncitoTravieso.setRotationX(numeroXX);
+            BotoncitoTravieso.setRotationY(-numeroYY);
         }
     }
 }

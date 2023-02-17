@@ -1,4 +1,4 @@
-package com.example.proyectofirebaseesdras;
+package com.example.proyectofirebaseesdras.Recyclerview;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectofirebaseesdras.Clases.Jugador;
+import com.example.proyectofirebaseesdras.DetallesJugador;
+import com.example.proyectofirebaseesdras.R;
 
 public class JugadorViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
 {
@@ -16,21 +18,25 @@ public class JugadorViewHolder extends RecyclerView.ViewHolder implements View.O
     // ----------------
     private TextView txt_item_GamerTag;
     private TextView txt_item_Puntuacion;
-
+    private TextView txt_item_Correo;
     private ListaJugadoresAdapter lja;
-
+    private Context contexto;
     public JugadorViewHolder(@NonNull View itemView, ListaJugadoresAdapter listaJugadoresAdapter)
     {
         super(itemView);
         txt_item_GamerTag = (TextView) itemView.findViewById(R.id.txt_NombreJugador);
         txt_item_Puntuacion = (TextView) itemView.findViewById(R.id.txt_puntuacionJugador);
+        txt_item_Correo = (TextView) itemView.findViewById(R.id.txt_correoJugador);
         // -------------------------------
         lja = listaJugadoresAdapter;
         itemView.setOnClickListener(this);
     }
-
-    private Context contexto;
-
+    public TextView getTxt_item_Correo() {
+        return txt_item_Correo;
+    }
+    public void setTxt_item_Correo(TextView txt_item_Correo) {
+        this.txt_item_Correo = txt_item_Correo;
+    }
     public Context getContexto() {
         return contexto;
     }
@@ -58,18 +64,18 @@ public class JugadorViewHolder extends RecyclerView.ViewHolder implements View.O
     public ListaJugadoresAdapter getLja() {
         return lja;
     }
-
     public void setLja(ListaJugadoresAdapter lja) {
         this.lja = lja;
     }
-
     @Override
     public void onClick(View view)
     {
         /*
-        Jugador j = new Jugador(String.valueOf(txt_item_GamerTag.getText()), String.valueOf(txt_item_Puntuacion.));
-        // Intent intent = new Intent(this.contexto, DetallesJugador.class);
-        this.contexto.startActivity(inten);
+        int posicion = getLayoutPosition();
+        Jugador ja = lja.getJugadores().get(posicion);
+        Intent intent = new Intent(lja.getContexto(), DetallesJugador.class);
+        intent.putExtra(EXTRA_ALUMNO_ITEM,ja);
+        Context contexto = lja.getContexto();
          */
     }
 }

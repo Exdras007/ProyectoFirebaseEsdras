@@ -1,4 +1,4 @@
-package com.example.proyectofirebaseesdras;
+package com.example.proyectofirebaseesdras.Recyclerview;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectofirebaseesdras.Clases.Jugador;
+import com.example.proyectofirebaseesdras.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -73,8 +74,9 @@ public class ListaJugadoresAdapter extends RecyclerView.Adapter<JugadorViewHolde
     public void onBindViewHolder(@NonNull JugadorViewHolder holder, int position)
     {
         Jugador j = this.getJugadores().get(position);
-        holder.getTxt_item_GamerTag().setText("Nombre: " + j.getGamerTag());
-        holder.getTxt_item_Puntuacion().setText("Puntuacion: " + String.valueOf(j.getPuntuacionJugador()));
+        holder.getTxt_item_GamerTag().setText("GamerTag: " + j.getGamerTag());
+        holder.getTxt_item_Puntuacion().setText("Score:\n" + String.valueOf(j.getPuntuacionJugador()));
+        holder.getTxt_item_Correo().setText(j.getCorreo());
     }
 
     @Override
