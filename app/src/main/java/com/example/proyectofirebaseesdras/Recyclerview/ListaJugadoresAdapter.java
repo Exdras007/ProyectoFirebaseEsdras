@@ -85,7 +85,8 @@ public class ListaJugadoresAdapter extends RecyclerView.Adapter<JugadorViewHolde
         return this.jugadores.size();
     }
 
-    public void addJugador(Jugador jugadorAñadido) {
+    public void addJugador(Jugador jugadorAñadido)
+    {
         jugadores.add(jugadorAñadido);
         notifyDataSetChanged();
     }

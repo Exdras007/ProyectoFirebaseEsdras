@@ -1,8 +1,9 @@
 package com.example.proyectofirebaseesdras.Clases;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Jugador
+public class Jugador implements Serializable
 {
     private String Correo;
     private String GamerTag;
@@ -19,6 +20,13 @@ public class Jugador
     {
         GamerTag = gamerTag;
         PuntuacionJugador = puntuacion;
+        Correo = "";
+    }
+
+    public Jugador(String gamerTag)
+    {
+        GamerTag = gamerTag;
+        PuntuacionJugador = 0;
         Correo = "";
     }
 

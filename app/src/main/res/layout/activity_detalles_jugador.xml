@@ -12,7 +12,7 @@
         android:id="@+id/txt_correo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="45dp"
         android:rotationX="0"
         android:rotationY="0"
         android:text="Correo jugador"
@@ -22,7 +22,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.785"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_gamerTag2" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_puntuacionJugadorDetalles" />
 
     <Button
         android:id="@+id/btn_VolverDetalles"
@@ -38,12 +38,16 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/txt_gamerTag2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/txt_puntuacionJugadorDetalles"
+        android:layout_width="403dp"
+        android:layout_height="82dp"
         android:layout_marginTop="50dp"
+        android:background="#A30000"
+        android:gravity="center"
+        android:hapticFeedbackEnabled="true"
+        android:rotation="5"
         android:rotationX="20"
-        android:rotationY="15"
+        android:rotationY="25"
         android:text="Puntuacion_Jugador"
         android:textColor="#000000"
         android:textSize="34sp"
@@ -56,29 +60,14 @@
         android:id="@+id/txt_tituloPuntuacionDetalles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="33dp"
         android:text="Puntuacion:"
         android:textColor="#000000"
         android:textSize="48sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_gamerTag" />
-
-    <TextView
-        android:id="@+id/txt_gamerTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:rotationX="20"
-        android:rotationY="15"
-        android:text="GamerTag_Jugador"
-        android:textColor="#000000"
-        android:textSize="34sp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_tituloGamertagDetalles" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_gamertag" />
 
     <TextView
         android:id="@+id/txt_TituloDetallesJugador"
@@ -106,4 +95,53 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_TituloDetallesJugador" />
+
+    <EditText
+        android:id="@+id/edt_gamertag"
+        android:layout_width="384dp"
+        android:layout_height="78dp"
+        android:layout_marginTop="20dp"
+        android:background="#A30000"
+        android:ems="10"
+        android:enabled="false"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:rotationX="20"
+        android:rotationY="15"
+        android:text="GamerTag"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_tituloGamertagDetalles" />
+
+    <Button
+        android:id="@+id/btn_cambiarGamerTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#7E0000"
+        android:enabled="false"
+        android:onClick="EditarNombre"
+        android:text="Cambiar GamerTag"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_borrar"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toEndOf="@+id/btn_VolverDetalles" />
+
+    <Button
+        android:id="@+id/btn_borrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#7E0000"
+        android:enabled="false"
+        android:onClick="BorrarJugador"
+        android:text="Borrar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

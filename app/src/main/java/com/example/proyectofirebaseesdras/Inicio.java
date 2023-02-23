@@ -11,9 +11,14 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.proyectofirebaseesdras.Clases.Jugador;
+import com.example.proyectofirebaseesdras.Recyclerview.JugadorViewHolder;
 import com.example.proyectofirebaseesdras.Recyclerview.ListaJugadoresAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,6 +33,14 @@ import java.util.ArrayList;
 public class Inicio extends AppCompatActivity
 {
     private FirebaseAuth mAuth;
+    private RecyclerView rv_jugadores = null;
+    private ListaJugadoresAdapter adaptadorJugadores = null;
+    private DatabaseReference myRefJugadores = null;
+    private ArrayList<Jugador> jugadores;
+    public static int Peticion_1 = 1;
+    private EditText edt_Buscar;
+    public Inicio() {
+    }
 
     @Override
     public void onStart()
@@ -49,25 +62,18 @@ public class Inicio extends AppCompatActivity
             startActivity(intent);
         }
     }
-
-    private RecyclerView rv_jugadores = null;
-    private ListaJugadoresAdapter adaptadorJugadores = null;
-    private DatabaseReference myRefJugadores = null;
-    private ArrayList<Jugador> jugadores;
-    //public static int PETICION1 = 1;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
-        // --------------------------------------
+        // -----------------------------------------------------------
         rv_jugadores = (RecyclerView) findViewById(R.id.rv_jugadores);
+        edt_Buscar = findViewById(R.id.edt_buscar);
         // --------------------------------
         mAuth = FirebaseAuth.getInstance();
         jugadores = new ArrayList<Jugador>();
-        // --------------
+        // --------------------------------------------
         adaptadorJugadores = new ListaJugadoresAdapter(this,jugadores);
         rv_jugadores.setAdapter(adaptadorJugadores);
         myRefJugadores = FirebaseDatabase.getInstance().getReference("Jugadores");
@@ -92,18 +98,20 @@ public class Inicio extends AppCompatActivity
                 Log.i( "Fallo", String.valueOf(error.toException()));
             }
         });
-
+        // -------------------------------------------------------------
         int orientation = getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE)
+        {
             // In landscape
             rv_jugadores.setLayoutManager(new GridLayoutManager(this,2));
-        } else {
+        }
+        else
+        {
             // In portrait
             rv_jugadores.setLayoutManager(new LinearLayoutManager(this));
         }
 
     }
-
     public void cerrarSesion(View view)
     {
         FirebaseAuth.getInstance().signOut();
@@ -116,5 +124,34 @@ public class Inicio extends AppCompatActivity
     {
         Intent intent = new Intent(Inicio.this, activity_jugar.class);
         startActivity(intent);
+    }
+
+    public void Buscar(View view)
+    {
+        String NombreBuscar = String.valueOf(edt_Buscar.getText());
+        myRefJugadores.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange( DataSnapshot snapshot)
+            {
+                adaptadorJugadores.getJugadores().clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren())
+                {
+                    Jugador j = (Jugador) dataSnapshot.getValue(Jugador.class);
+                    if (NombreBuscar.equalsIgnoreCase(j.getGamerTag()))
+                    {
+                        jugadores.add(j);
+                        adaptadorJugadores.setJugadores(jugadores);
+                        adaptadorJugadores.notifyDataSetChanged();
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+                // Fallo al leer valores
+                Log.i( "Fallo", String.valueOf(error.toException()));
+            }
+        });
     }
 }

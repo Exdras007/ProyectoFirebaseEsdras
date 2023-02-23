@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class activity_item_jugadores extends AppCompatActivity
+import java.io.Serializable;
+
+public class activity_item_jugadores extends AppCompatActivity implements Serializable
 {
     private TextView GamerTag;
     private TextView Puntuacion;

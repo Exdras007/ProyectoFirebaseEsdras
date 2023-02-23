@@ -9,18 +9,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectofirebaseesdras.Clases.Jugador;
 import com.example.proyectofirebaseesdras.DetallesJugador;
+import com.example.proyectofirebaseesdras.Inicio;
 import com.example.proyectofirebaseesdras.R;
 
 public class JugadorViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
 {
-    public static final String EXTRA_ALUMNO_ITEM = "es.JugadorXD.com.Jugador";
-    //public static final String EXTRA_JUGADOR_IMAGEN = "es.JugadorXD.com.ImagenJugador";
+    public static final String EXTRA_JUGADOR_ITEM = "es.JugadorXDXD.com.Jugador";
+    public static final String EXTRA_JUGADOR_CASILLA = "es.JugadorXD.com.CasillaDelJugador";
     // ----------------
     private TextView txt_item_GamerTag;
     private TextView txt_item_Puntuacion;
     private TextView txt_item_Correo;
     private ListaJugadoresAdapter lja;
     private Context contexto;
+
     public JugadorViewHolder(@NonNull View itemView, ListaJugadoresAdapter listaJugadoresAdapter)
     {
         super(itemView);
@@ -70,12 +72,12 @@ public class JugadorViewHolder extends RecyclerView.ViewHolder implements View.O
     @Override
     public void onClick(View view)
     {
-        /*
         int posicion = getLayoutPosition();
         Jugador ja = lja.getJugadores().get(posicion);
         Intent intent = new Intent(lja.getContexto(), DetallesJugador.class);
-        intent.putExtra(EXTRA_ALUMNO_ITEM,ja);
+        intent.putExtra(EXTRA_JUGADOR_ITEM,ja);
+        intent.putExtra(EXTRA_JUGADOR_CASILLA, posicion);
         Context contexto = lja.getContexto();
-         */
+        ((Inicio) contexto).startActivityForResult(intent, Inicio.Peticion_1);
     }
 }
