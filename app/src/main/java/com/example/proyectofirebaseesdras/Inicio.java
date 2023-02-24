@@ -11,14 +11,10 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.proyectofirebaseesdras.Clases.Jugador;
-import com.example.proyectofirebaseesdras.Recyclerview.JugadorViewHolder;
 import com.example.proyectofirebaseesdras.Recyclerview.ListaJugadoresAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 
 public class Inicio extends AppCompatActivity
@@ -80,16 +77,9 @@ public class Inicio extends AppCompatActivity
         myRefJugadores.addValueEventListener(new ValueEventListener()
         {
             @Override
-            public void onDataChange( DataSnapshot snapshot)
+            public void onDataChange(DataSnapshot snapshot)
             {
-                adaptadorJugadores.getJugadores().clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren())
-                {
-                    Jugador j = (Jugador) dataSnapshot.getValue(Jugador.class);
-                    jugadores.add(j);
-                    adaptadorJugadores.setJugadores(jugadores);
-                    adaptadorJugadores.notifyDataSetChanged();
-                }
+                RecogerJugadores(snapshot);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error)
@@ -112,6 +102,19 @@ public class Inicio extends AppCompatActivity
         }
 
     }
+
+    private void RecogerJugadores(DataSnapshot snapshot)
+    {
+        adaptadorJugadores.getJugadores().clear();
+        for (DataSnapshot dataSnapshot : snapshot.getChildren())
+        {
+            Jugador j = (Jugador) dataSnapshot.getValue(Jugador.class);
+            jugadores.add(j);
+            adaptadorJugadores.setJugadores(jugadores);
+            adaptadorJugadores.notifyDataSetChanged();
+        }
+    }
+
     public void cerrarSesion(View view)
     {
         FirebaseAuth.getInstance().signOut();
@@ -125,10 +128,16 @@ public class Inicio extends AppCompatActivity
         Intent intent = new Intent(Inicio.this, activity_jugar.class);
         startActivity(intent);
     }
-
+    public static String quitaDiacriticos(String s)
+    {
+        s = Normalizer.normalize(s, Normalizer.Form.NFD);
+        s = s.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+        return s;
+    }
     public void Buscar(View view)
     {
-        String NombreBuscar = String.valueOf(edt_Buscar.getText());
+        String NombreBuscar = quitaDiacriticos(String.valueOf(edt_Buscar.getText()));
+        NombreBuscar.trim();
         myRefJugadores.addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -138,11 +147,15 @@ public class Inicio extends AppCompatActivity
                 for (DataSnapshot dataSnapshot : snapshot.getChildren())
                 {
                     Jugador j = (Jugador) dataSnapshot.getValue(Jugador.class);
-                    if (NombreBuscar.equalsIgnoreCase(j.getGamerTag()))
+                    if (NombreBuscar.equalsIgnoreCase(quitaDiacriticos(j.getGamerTag().trim())))
                     {
                         jugadores.add(j);
                         adaptadorJugadores.setJugadores(jugadores);
                         adaptadorJugadores.notifyDataSetChanged();
+                    }
+                    else if (NombreBuscar.equalsIgnoreCase(""))
+                    {
+                        RecogerJugadores(snapshot);
                     }
                 }
             }

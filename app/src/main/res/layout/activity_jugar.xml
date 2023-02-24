@@ -12,13 +12,13 @@
         android:id="@+id/btn_enviarPuntuacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="25dp"
         android:background="#2B2B2B"
         android:onClick="enviarPuntuacion"
         android:padding="10dp"
         android:text="¡Envia tu puntuación!"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_gamerTag" />
 
@@ -29,6 +29,8 @@
         android:layout_marginTop="40dp"
         android:gravity="center"
         android:padding="3dp"
+        android:rotationX="30"
+        android:rotationY="25"
         android:text="0"
         android:textColor="#000000"
         android:textSize="60sp"
@@ -73,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
-        android:background="#2B2B2B"
+        android:background="#DA0000"
         android:onClick="sumarPuntuacion"
         android:text="¡Aquí!"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -85,7 +87,7 @@
         android:id="@+id/edt_gamerTag"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:gravity="center"
         android:hint="Ponga aqui su GamerTag..."
@@ -98,5 +100,24 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_puntuacion" />
+
+    <Button
+        android:id="@+id/btn_reintentar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="114dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="28dp"
+        android:background="#DA0000"
+        android:enabled="false"
+        android:onClick="reintentar"
+        android:padding="15dp"
+        android:text="¡Otra vez!"
+        android:textSize="10sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/btn_enviarPuntuacion"
+        app:layout_constraintTop_toBottomOf="@+id/edt_gamerTag" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

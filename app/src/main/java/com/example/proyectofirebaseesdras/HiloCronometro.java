@@ -37,7 +37,7 @@ public class HiloCronometro implements Runnable
     @Override
     public void run()
     {
-        while (Tiempo < 5)
+        while (Tiempo < 7)
         {
             try
             {

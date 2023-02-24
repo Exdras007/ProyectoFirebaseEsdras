@@ -26,6 +26,7 @@ public class activity_jugar extends AppCompatActivity
     private int vueltas = 5;
     private Button BotoncitoTravieso;
     private Button BotonEnviarPuntuacion;
+    public static Button BotonReintentar;
     boolean empezado = false;
     HiloCronometro hcr = new HiloCronometro("Tiempo", 0);
 
@@ -38,7 +39,15 @@ public class activity_jugar extends AppCompatActivity
         TXT_TituloPuntuacion = (TextView) findViewById(R.id.txt_tituloPuntuacion);
         BotoncitoTravieso = (Button) findViewById(R.id.btn_pulsador);
         BotonEnviarPuntuacion = (Button) findViewById(R.id.btn_enviarPuntuacion);
+        BotonReintentar = (Button) findViewById(R.id.btn_reintentar);
         EDT_GamerTag = (EditText) findViewById(R.id.edt_gamerTag);
+    }
+
+    public void reintentar(View view)
+    {
+        Toast.makeText(activity_jugar.this, "¡Otro intento no hace daño a nadie!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(activity_jugar.this, activity_jugar.class);
+        startActivity(intent);
     }
     public void enviarPuntuacion(View view)
     {
@@ -60,9 +69,9 @@ public class activity_jugar extends AppCompatActivity
             Jugador jugadorActual = new Jugador(Email, GamerTag, puntuacion);
             // Aqui lo añado
             myRef.child("Jugadores").child(jugadorActual.getGamerTag()).setValue(jugadorActual);
-
             // Muestro un mensaje de confirmacion y vuelvo a la pantalla anterior
             Toast.makeText(activity_jugar.this, "Puntuacion subida correctamente", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(activity_jugar.this, "Tiempo: " + hcr.getTiempo(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(activity_jugar.this, Inicio.class);
             startActivity(intent);
         }
@@ -85,10 +94,12 @@ public class activity_jugar extends AppCompatActivity
                 Toast.makeText(activity_jugar.this, "¡Se acabó el tiempo!", Toast.LENGTH_SHORT).show();
                 Mostrado = true;
             }
-            String tiempo = String.valueOf(hcr.getTiempo());
-            // Toast.makeText(activity_jugar.this, "Tiempo: " + tiempo + "s", Toast.LENGTH_SHORT).show();
             BotonEnviarPuntuacion.setVisibility(View.VISIBLE);
             EDT_GamerTag.setVisibility(View.VISIBLE);
+            // Oculto el boton para jugar y muestro el de reintentar, pero se espera unos segundos antes de poder darle
+            BotonReintentar.setVisibility(View.VISIBLE);
+            BotonReintentar.setEnabled(true);
+            BotoncitoTravieso.setVisibility(View.INVISIBLE);
         }
         else
         {

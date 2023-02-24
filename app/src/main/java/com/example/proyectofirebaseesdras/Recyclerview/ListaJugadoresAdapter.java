@@ -74,7 +74,7 @@ public class ListaJugadoresAdapter extends RecyclerView.Adapter<JugadorViewHolde
     public void onBindViewHolder(@NonNull JugadorViewHolder holder, int position)
     {
         Jugador j = this.getJugadores().get(position);
-        holder.getTxt_item_GamerTag().setText("GamerTag: " + j.getGamerTag());
+        holder.getTxt_item_GamerTag().setText(j.getGamerTag());
         holder.getTxt_item_Puntuacion().setText("Score:\n" + String.valueOf(j.getPuntuacionJugador()));
         holder.getTxt_item_Correo().setText(j.getCorreo());
     }
