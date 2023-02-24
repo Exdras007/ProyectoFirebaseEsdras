@@ -26,7 +26,8 @@ public class activity_jugar extends AppCompatActivity
     private int vueltas = 5;
     private Button BotoncitoTravieso;
     private Button BotonEnviarPuntuacion;
-    public static Button BotonReintentar;
+    private Button BotonVolver;
+    private Button BotonReintentar;
     boolean empezado = false;
     HiloCronometro hcr = new HiloCronometro("Tiempo", 0);
 
@@ -40,6 +41,7 @@ public class activity_jugar extends AppCompatActivity
         BotoncitoTravieso = (Button) findViewById(R.id.btn_pulsador);
         BotonEnviarPuntuacion = (Button) findViewById(R.id.btn_enviarPuntuacion);
         BotonReintentar = (Button) findViewById(R.id.btn_reintentar);
+        BotonVolver = (Button) findViewById(R.id.btn_volver);
         EDT_GamerTag = (EditText) findViewById(R.id.edt_gamerTag);
     }
 
@@ -47,6 +49,11 @@ public class activity_jugar extends AppCompatActivity
     {
         Toast.makeText(activity_jugar.this, "¡Otro intento no hace daño a nadie!", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(activity_jugar.this, activity_jugar.class);
+        startActivity(intent);
+    }
+    public void Volver(View view)
+    {
+        Intent intent = new Intent(activity_jugar.this, Inicio.class);
         startActivity(intent);
     }
     public void enviarPuntuacion(View view)
@@ -100,6 +107,7 @@ public class activity_jugar extends AppCompatActivity
             BotonReintentar.setVisibility(View.VISIBLE);
             BotonReintentar.setEnabled(true);
             BotoncitoTravieso.setVisibility(View.INVISIBLE);
+            BotonVolver.setVisibility(View.VISIBLE);
         }
         else
         {
